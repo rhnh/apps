@@ -1011,7 +1011,9 @@ function createButton(_a) {
     var tdSource = document.createElement('td');
     var link = document.createElement('a');
     filename = filename !== '' ? filename + '.ts' : filename;
-    link.setAttribute('href', "https://github.com/rhnh/typescript-basics-stuff/blob/master/src/app/".concat(filename));
+    link.setAttribute('href', "https://github.com/rhnh/apps/blob/master/src/app/".concat(filename)
+    // `https://github.com/rhnh/typescript-basics-stuff/blob/master/src/app/${filename}`
+    );
     link.innerHTML = 'Source Code';
     tdSource.append(link);
     tr.appendChild(tdButton);
@@ -1305,7 +1307,7 @@ var memoizedFibBtn = render.createButton({
     id: 'memoized-fib',
     txt: 'Fibonacci',
     filename: 'fib',
-    desc: 'Fibonacci, John Wallis Method',
+    desc: 'Fibonacci, memoized',
 });
 memoizedFibBtn.addEventListener('click', function () {
     var desc = '0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...';
