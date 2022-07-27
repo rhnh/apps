@@ -127,7 +127,8 @@ export function createButton({
   filename = filename !== '' ? filename + '.ts' : filename
   link.setAttribute(
     'href',
-    `https://github.com/rhnh/typescript-basics-stuff/blob/master/src/app/${filename}`
+    `https://github.com/rhnh/apps/blob/master/src/app/${filename}`
+    // `https://github.com/rhnh/typescript-basics-stuff/blob/master/src/app/${filename}`
   )
   link.innerHTML = 'Source Code'
   tdSource.append(link)
