@@ -161,7 +161,7 @@ const memoizedFibBtn = render.createButton({
   id: 'memoized-fib',
   txt: 'Fibonacci',
   filename: 'fib',
-  desc: 'Fibonacci, John Wallis Method',
+  desc: 'Fibonacci, memoized',
 })
 memoizedFibBtn.addEventListener('click', () => {
   const desc = '0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...'
