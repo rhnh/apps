@@ -6,11 +6,13 @@ const cancel = document.getElementById('cancel')
 function addElement(
   elementId: string,
   elementType: string,
-  parentElement: HTMLElement
+  parentElement: HTMLElement,
+  typeAtr?: string
 ): HTMLElement {
   const child = document.createElement(elementType)
   child.className = 'form-name'
   child.setAttribute('id', elementId)
+  child.setAttribute('type', typeAtr)
   parentElement.appendChild(child)
   return parentElement
 }
@@ -18,13 +20,19 @@ function addElement(
 export function addMultipleElement(
   numberOfElements: number,
   elementType: string,
-  elementId,
-  parentElement: HTMLElement
+  elementId: string,
+  parentElement: HTMLElement,
+  inputType?: string
 ): HTMLElement {
   let htmlElements: HTMLElement = null
   for (let i = 0; i < numberOfElements; i++) {
     let id = i + 1
-    htmlElements = addElement(elementId + id, elementType, parentElement)
+    htmlElements = addElement(
+      elementId + id,
+      elementType,
+      parentElement,
+      inputType
+    )
   }
   return htmlElements
 }
@@ -63,15 +71,33 @@ cancel.addEventListener('click', () => {
   removeAllChildren(modalForm)
 })
 
-export function displayModal(callBack, desc, numberInputBox, type?: string) {
+export function displayModal({
+  desc,
+  callBack,
+  numberOfInputBox: numberInputBox,
+  type,
+  inputType,
+}: {
+  callBack: any
+  desc: string
+  numberOfInputBox: number
+  type?: string
+  inputType?: string
+}) {
   const description = document.getElementById('description')
 
   let CalculateBtn = document.getElementById('calculate'),
     result = document.createElement('p')
   result.setAttribute('id', 'result')
-  addMultipleElement(numberInputBox, type ?? 'INPUT', 'formName', modalForm)
+  addMultipleElement(
+    numberInputBox,
+    type ?? 'INPUT',
+    'formName',
+    modalForm,
+    inputType
+  )
   addParagraph('description', ' Harmonic Series ')
-  description.innerText = desc
+  description.innerHTML = desc
   CalculateBtn.addEventListener('click', () => {
     let values = getInputValues(modalForm)
     let v = callBack(...values)

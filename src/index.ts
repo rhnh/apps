@@ -24,7 +24,7 @@ const flipBtn = render.createButton({
 flipBtn.addEventListener('click', () => {
   const desc = 'Give a number to flip it. Example 123 would be 321!'
   const numberOfInputBox = 1
-  render.displayModal(flip, desc, numberOfInputBox)
+  render.displayModal({ callBack: flip, desc, numberOfInputBox })
 })
 
 //#################################################
@@ -39,7 +39,7 @@ handshakeBtn.addEventListener('click', () => {
   const desc =
     'In a party n person shakes with each others, how many hand shakes were made in total'
   const numberOfInputBox = 1
-  render.displayModal(numberOfHandShake, desc, numberOfInputBox)
+  render.displayModal({ callBack: numberOfHandShake, desc, numberOfInputBox })
 })
 
 //#################################################
@@ -53,7 +53,7 @@ const mjbBtn = render.createButton({
 mjbBtn.addEventListener('click', () => {
   const desc = ` The given number has to be dividable by 3, the following number would be the sum of \n its digits \n example for 33: \n   54,189,1242,81,513,153,153 `
   const numberOfInputBox = 1
-  render.displayModal(mjb, desc, numberOfInputBox)
+  render.displayModal({ callBack: mjb, desc, numberOfInputBox })
 })
 
 //#################################################
@@ -67,7 +67,7 @@ const harmonicSeriesBtn = render.createButton({
 harmonicSeriesBtn.addEventListener('click', () => {
   const desc = '1 + 1/2+ 1/3 + 1/4'
   const numberOfInputBox = 1
-  render.displayModal(harmonicSeries, desc, numberOfInputBox)
+  render.displayModal({ callBack: harmonicSeries, desc, numberOfInputBox })
 })
 
 //#################################################
@@ -81,7 +81,7 @@ const leibnizSeriesBtn = render.createButton({
 })
 leibnizSeriesBtn.addEventListener('click', () => {
   const numberOfInputBox = 1
-  render.displayModal(LeibnizSeries, desc, numberOfInputBox)
+  render.displayModal({ callBack: LeibnizSeries, desc, numberOfInputBox })
 })
 
 //#################################################
@@ -95,7 +95,7 @@ const sumOfOddsBtn = render.createButton({
 })
 sumOfOddsBtn.addEventListener('click', () => {
   const numberOfInputBox = 1
-  render.displayModal(sumOfOddNumbers, desc, numberOfInputBox)
+  render.displayModal({ callBack: sumOfOddNumbers, desc, numberOfInputBox })
 })
 
 //#################################################
@@ -109,7 +109,7 @@ const isPrime = render.createButton({
 isPrime.addEventListener('click', () => {
   const desc = 'Is the given number a prime number ?'
   const numberOfInputBox = 1
-  render.displayModal(funcs.isPrime, desc, numberOfInputBox)
+  render.displayModal({ callBack: funcs.isPrime, desc, numberOfInputBox })
 })
 
 //#################################################
@@ -123,7 +123,7 @@ const primeFactor = render.createButton({
 primeFactor.addEventListener('click', () => {
   const desc = 'Shows prime factor of a number'
   const numberOfInputBox = 1
-  render.displayModal(primeFactors, desc, numberOfInputBox)
+  render.displayModal({ callBack: primeFactors, desc, numberOfInputBox })
 })
 
 //#################################################
@@ -138,7 +138,7 @@ exponential.addEventListener('click', () => {
   const desc =
     ' e^x = 1 + x + (x^2)/2! + (x^3)/3! +( x^4)/4! + (x^5)/5! +... + (x^n)/n!'
   const numberOfInputBox = 2
-  render.displayModal(exponentialSeries, desc, numberOfInputBox)
+  render.displayModal({ callBack: exponentialSeries, desc, numberOfInputBox })
 })
 
 //#################################################
@@ -152,7 +152,11 @@ const JWallis = render.createButton({
 JWallis.addEventListener('click', () => {
   const desc = 'pi/2 = 2/1 * 2/3 * 4/3 * 4/5 * 6/5 * 8/7* 8/9 +, .. '
   const numberOfInputBox = 1
-  render.displayModal(JWallisPI, desc, numberOfInputBox)
+  render.displayModal({
+    callBack: JWallisPI,
+    desc,
+    numberOfInputBox,
+  })
 })
 
 //#################################################
@@ -166,7 +170,11 @@ const memoizedFibBtn = render.createButton({
 memoizedFibBtn.addEventListener('click', () => {
   const desc = '0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...'
   const numberOfInputBox = 1
-  render.displayModal(fib, desc, numberOfInputBox)
+  render.displayModal({
+    callBack: fib,
+    desc,
+    numberOfInputBox,
+  })
 })
 //John Wallis
 // const memoizedFibBtn = render.createButton("memoized-fib", "Fibonacci");
@@ -199,7 +207,11 @@ taylor.addEventListener('click', () => {
   const desc =
     ' e^x = 1 + x + (x^2)/2! + (x^3)/3! +( x^4)/4! + (x^5)/5! +... + (x^n)/n!'
   const numberOfInputBox = 2
-  render.displayModal(taylorSeriesHorner, desc, numberOfInputBox)
+  render.displayModal({
+    callBack: taylorSeriesHorner,
+    desc,
+    numberOfInputBox,
+  })
 })
 /**
  * ##########################################
@@ -209,11 +221,18 @@ const luhn = render.createButton({
   id: 'luhn',
   txt: 'Luhn algorithm',
   filename: 'Luhn-CreditCard',
-  status: 'progress',
+  desc: 'Checking Credit card number for validation using Luhn Algorithm',
 })
 
 luhn.addEventListener('click', () => {
-  const desc = 'Credit Card number validation'
+  const desc =
+    'Luhn Algorithm: <br/> <t/> Multiply every 2nd digit with 2, starting for 2nd right hand position. <br/> If the result is than 9. <br/> Subtract 9. <br/> Sum all the digits and if % of the sum is 0. It is a valid Credit Card number'
   const numberOfInputBox = 1
-  render.displayModal(isLuhnNumber, desc, numberOfInputBox, 'number')
+  render.displayModal({
+    callBack: isLuhnNumber,
+    desc,
+    numberOfInputBox,
+    type: 'INPUT',
+    inputType: 'number',
+  })
 })

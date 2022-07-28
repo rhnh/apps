@@ -921,18 +921,19 @@ var modalForm = document.getElementById('input-form');
 var modal = document.getElementById('modal');
 var close = document.getElementById('close');
 var cancel = document.getElementById('cancel');
-function addElement(elementId, elementType, parentElement) {
+function addElement(elementId, elementType, parentElement, typeAtr) {
     var child = document.createElement(elementType);
     child.className = 'form-name';
     child.setAttribute('id', elementId);
+    child.setAttribute('type', typeAtr);
     parentElement.appendChild(child);
     return parentElement;
 }
-function addMultipleElement(numberOfElements, elementType, elementId, parentElement) {
+function addMultipleElement(numberOfElements, elementType, elementId, parentElement, inputType) {
     var htmlElements = null;
     for (var i = 0; i < numberOfElements; i++) {
         var id = i + 1;
-        htmlElements = addElement(elementId + id, elementType, parentElement);
+        htmlElements = addElement(elementId + id, elementType, parentElement, inputType);
     }
     return htmlElements;
 }
@@ -967,13 +968,14 @@ cancel.addEventListener('click', function () {
     modal.style.display = 'none';
     removeAllChildren(modalForm);
 });
-function displayModal(callBack, desc, numberInputBox, type) {
+function displayModal(_a) {
+    var desc = _a.desc, callBack = _a.callBack, numberInputBox = _a.numberOfInputBox, type = _a.type, inputType = _a.inputType;
     var description = document.getElementById('description');
     var CalculateBtn = document.getElementById('calculate'), result = document.createElement('p');
     result.setAttribute('id', 'result');
-    addMultipleElement(numberInputBox, type !== null && type !== void 0 ? type : 'INPUT', 'formName', modalForm);
+    addMultipleElement(numberInputBox, type !== null && type !== void 0 ? type : 'INPUT', 'formName', modalForm, inputType);
     addParagraph('description', ' Harmonic Series ');
-    description.innerText = desc;
+    description.innerHTML = desc;
     CalculateBtn.addEventListener('click', function () {
         var values = getInputValues(modalForm);
         var v = callBack.apply(void 0, values);
@@ -1011,7 +1013,7 @@ function createButton(_a) {
     var tdSource = document.createElement('td');
     var link = document.createElement('a');
     filename = filename !== '' ? filename + '.ts' : filename;
-    link.setAttribute('href', "https://github.com/rhnh/apps/blob/master/src/app/".concat(filename)
+    link.setAttribute('href', "https://github.com/rhnh/apps/blob/main/src/app/".concat(filename)
     // `https://github.com/rhnh/typescript-basics-stuff/blob/master/src/app/${filename}`
     );
     link.innerHTML = 'Source Code';
@@ -1182,7 +1184,7 @@ var flipBtn = render.createButton({
 flipBtn.addEventListener('click', function () {
     var desc = 'Give a number to flip it. Example 123 would be 321!';
     var numberOfInputBox = 1;
-    render.displayModal(flip_1.flip, desc, numberOfInputBox);
+    render.displayModal({ callBack: flip_1.flip, desc: desc, numberOfInputBox: numberOfInputBox });
 });
 //#################################################
 //Handshake
@@ -1195,7 +1197,7 @@ var handshakeBtn = render.createButton({
 handshakeBtn.addEventListener('click', function () {
     var desc = 'In a party n person shakes with each others, how many hand shakes were made in total';
     var numberOfInputBox = 1;
-    render.displayModal(numberOfHandShake_1.numberOfHandShake, desc, numberOfInputBox);
+    render.displayModal({ callBack: numberOfHandShake_1.numberOfHandShake, desc: desc, numberOfInputBox: numberOfInputBox });
 });
 //#################################################
 //Satz 153
@@ -1208,7 +1210,7 @@ var mjbBtn = render.createButton({
 mjbBtn.addEventListener('click', function () {
     var desc = " The given number has to be dividable by 3, the following number would be the sum of \n its digits \n example for 33: \n   54,189,1242,81,513,153,153 ";
     var numberOfInputBox = 1;
-    render.displayModal(marie_jose_bertin_1.mjb, desc, numberOfInputBox);
+    render.displayModal({ callBack: marie_jose_bertin_1.mjb, desc: desc, numberOfInputBox: numberOfInputBox });
 });
 //#################################################
 //Harmonic Series
@@ -1221,7 +1223,7 @@ var harmonicSeriesBtn = render.createButton({
 harmonicSeriesBtn.addEventListener('click', function () {
     var desc = '1 + 1/2+ 1/3 + 1/4';
     var numberOfInputBox = 1;
-    render.displayModal(harmonicSeries_1.harmonicSeries, desc, numberOfInputBox);
+    render.displayModal({ callBack: harmonicSeries_1.harmonicSeries, desc: desc, numberOfInputBox: numberOfInputBox });
 });
 //#################################################
 //Leibniz Series
@@ -1234,7 +1236,7 @@ var leibnizSeriesBtn = render.createButton({
 });
 leibnizSeriesBtn.addEventListener('click', function () {
     var numberOfInputBox = 1;
-    render.displayModal(LeibnizSeries_1.LeibnizSeries, desc, numberOfInputBox);
+    render.displayModal({ callBack: LeibnizSeries_1.LeibnizSeries, desc: desc, numberOfInputBox: numberOfInputBox });
 });
 //#################################################
 //Sum of Odd Series
@@ -1247,7 +1249,7 @@ var sumOfOddsBtn = render.createButton({
 });
 sumOfOddsBtn.addEventListener('click', function () {
     var numberOfInputBox = 1;
-    render.displayModal(oddNumberSum_1.sumOfOddNumbers, desc, numberOfInputBox);
+    render.displayModal({ callBack: oddNumberSum_1.sumOfOddNumbers, desc: desc, numberOfInputBox: numberOfInputBox });
 });
 //#################################################
 //Is Prime
@@ -1260,7 +1262,7 @@ var isPrime = render.createButton({
 isPrime.addEventListener('click', function () {
     var desc = 'Is the given number a prime number ?';
     var numberOfInputBox = 1;
-    render.displayModal(funcs.isPrime, desc, numberOfInputBox);
+    render.displayModal({ callBack: funcs.isPrime, desc: desc, numberOfInputBox: numberOfInputBox });
 });
 //#################################################
 //Prime Factor
@@ -1273,7 +1275,7 @@ var primeFactor = render.createButton({
 primeFactor.addEventListener('click', function () {
     var desc = 'Shows prime factor of a number';
     var numberOfInputBox = 1;
-    render.displayModal(primeFactors_1.primeFactors, desc, numberOfInputBox);
+    render.displayModal({ callBack: primeFactors_1.primeFactors, desc: desc, numberOfInputBox: numberOfInputBox });
 });
 //#################################################
 //exponential Series
@@ -1286,7 +1288,7 @@ var exponential = render.createButton({
 exponential.addEventListener('click', function () {
     var desc = ' e^x = 1 + x + (x^2)/2! + (x^3)/3! +( x^4)/4! + (x^5)/5! +... + (x^n)/n!';
     var numberOfInputBox = 2;
-    render.displayModal(expo_series_sum_1.exponentialSeries, desc, numberOfInputBox);
+    render.displayModal({ callBack: expo_series_sum_1.exponentialSeries, desc: desc, numberOfInputBox: numberOfInputBox });
 });
 //#################################################
 //John Wallis
@@ -1299,7 +1301,11 @@ var JWallis = render.createButton({
 JWallis.addEventListener('click', function () {
     var desc = 'pi/2 = 2/1 * 2/3 * 4/3 * 4/5 * 6/5 * 8/7* 8/9 +, .. ';
     var numberOfInputBox = 1;
-    render.displayModal(JWallisPI_1.JWallisPI, desc, numberOfInputBox);
+    render.displayModal({
+        callBack: JWallisPI_1.JWallisPI,
+        desc: desc,
+        numberOfInputBox: numberOfInputBox,
+    });
 });
 //#################################################
 //John Wallis
@@ -1312,7 +1318,11 @@ var memoizedFibBtn = render.createButton({
 memoizedFibBtn.addEventListener('click', function () {
     var desc = '0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...';
     var numberOfInputBox = 1;
-    render.displayModal(fib_1.fib, desc, numberOfInputBox);
+    render.displayModal({
+        callBack: fib_1.fib,
+        desc: desc,
+        numberOfInputBox: numberOfInputBox,
+    });
 });
 //John Wallis
 // const memoizedFibBtn = render.createButton("memoized-fib", "Fibonacci");
@@ -1343,7 +1353,11 @@ var taylor = render.createButton({
 taylor.addEventListener('click', function () {
     var desc = ' e^x = 1 + x + (x^2)/2! + (x^3)/3! +( x^4)/4! + (x^5)/5! +... + (x^n)/n!';
     var numberOfInputBox = 2;
-    render.displayModal(taylor_series_horner_1.taylorSeriesHorner, desc, numberOfInputBox);
+    render.displayModal({
+        callBack: taylor_series_horner_1.taylorSeriesHorner,
+        desc: desc,
+        numberOfInputBox: numberOfInputBox,
+    });
 });
 /**
  * ##########################################
@@ -1353,12 +1367,18 @@ var luhn = render.createButton({
     id: 'luhn',
     txt: 'Luhn algorithm',
     filename: 'Luhn-CreditCard',
-    status: 'progress',
+    desc: 'Checking Credit card number for validation using Luhn Algorithm',
 });
 luhn.addEventListener('click', function () {
-    var desc = 'Credit Card number validation';
+    var desc = 'Luhn Algorithm: <br/> <t/> Multiply every 2nd digit with 2, starting for 2nd right hand position. <br/> If the result is than 9. <br/> Subtract 9. <br/> Sum all the digits and if % of the sum is 0. It is a valid Credit Card number';
     var numberOfInputBox = 1;
-    render.displayModal(Luhn_CreditCard_1.isLuhnNumber, desc, numberOfInputBox, 'number');
+    render.displayModal({
+        callBack: Luhn_CreditCard_1.isLuhnNumber,
+        desc: desc,
+        numberOfInputBox: numberOfInputBox,
+        type: 'INPUT',
+        inputType: 'number',
+    });
 });
 
 
