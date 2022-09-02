@@ -236,3 +236,22 @@ luhn.addEventListener('click', () => {
     inputType: 'number',
   })
 })
+const BUHN = render.createButton({
+  id: 'luhn',
+  txt: 'Luhn algorithm',
+  filename: 'Luhn-CreditCard',
+  desc: 'Checking Credit card number for validation using Luhn Algorithm',
+})
+
+BUHN.addEventListener('click', () => {
+  const desc =
+    'Luhn Algorithm: <br/> <t/> Multiply every 2nd digit with 2, starting for 2nd right hand position. <br/> If the result is than 9. <br/> Subtract 9. <br/> Sum all the digits and if % of the sum is 0. It is a valid Credit Card number'
+  const numberOfInputBox = 1
+  render.displayModal({
+    callBack: isLuhnNumber,
+    desc,
+    numberOfInputBox,
+    type: 'canvas',
+    inputType: 'number',
+  })
+})
