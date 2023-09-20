@@ -213,3 +213,8 @@ footer {
 footer>a {
   color: #DFF0D8
 }
+
+.images {
+  max-width: 100px;
+  height: auto;
+}
