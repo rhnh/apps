@@ -1,4 +1,5 @@
 import HtmlWebpackPlugin = require('html-webpack-plugin')
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 import * as path from 'path'
 import * as webpack from 'webpack'
 import 'webpack-dev-server'
@@ -43,6 +44,14 @@ const config: webpack.Configuration = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './index.html',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'images',
+          to: 'images',
+        },
+      ],
     }),
   ],
 }
