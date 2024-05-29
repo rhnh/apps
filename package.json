@@ -10,11 +10,13 @@
     "build": "webpack  -c ./webpack.config.ts",
     "start": "webpack-dev-server --open",
     "format": "prettier --write \"src/**/*.{js,jsx,html}\"",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "clear_jest": "jest --clearCache"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
     "@babel/preset-env": "^7.18.9",
+    "@babel/preset-typescript": "^7.24.1",
     "@types/html-minifier": "^4.0.2",
     "@types/html-webpack-plugin": "^3.2.6",
     "@types/jest": "^28.1.6",
