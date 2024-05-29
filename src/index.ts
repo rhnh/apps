@@ -13,6 +13,7 @@ import { flip } from './app/flip'
 import { taylorSeriesHorner } from './app/taylor-series-horner'
 import { isLuhnNumber } from './app/Luhn-CreditCard'
 import { primeFactors } from './app/primeFactors'
+import { calculate } from './app/calculator'
 //#################################################
 //Handshake
 const flipBtn = render.createButton({
@@ -236,22 +237,26 @@ luhn.addEventListener('click', () => {
     inputType: 'number',
   })
 })
-const BUHN = render.createButton({
-  id: 'luhn',
-  txt: 'Luhn algorithm',
+
+/**
+ * calculator
+ */
+
+const displayCalculator = render.createButton({
+  id: 'calculator-regex',
+  txt: 'calculator with regex',
   filename: 'Luhn-CreditCard',
-  desc: 'Checking Credit card number for validation using Luhn Algorithm',
+  desc: 'calculator numbers',
 })
 
-BUHN.addEventListener('click', () => {
-  const desc =
-    'Luhn Algorithm: <br/> <t/> Multiply every 2nd digit with 2, starting for 2nd right hand position. <br/> If the result is than 9. <br/> Subtract 9. <br/> Sum all the digits and if % of the sum is 0. It is a valid Credit Card number'
+displayCalculator.addEventListener('click', () => {
+  const desc = 'calculator numbers'
   const numberOfInputBox = 1
   render.displayModal({
-    callBack: isLuhnNumber,
+    callBack: calculate,
     desc,
     numberOfInputBox,
-    type: 'canvas',
-    inputType: 'number',
+    type: 'INPUT',
+    inputType: 'string',
   })
 })
