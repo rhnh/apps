@@ -7,5 +7,12 @@
     "baseUrl": "./src",
     "esModuleInterop": true
   },
-  "exclude": ["node_modules", "*.test.ts"]
+  "exclude": [
+    "node_modules",
+    "./node_modules",
+    "./node_modules/*",
+    "./node_modules/@types/node/index.d.ts",
+    "node_modules",
+    "*.test.ts"
+  ]
 }
