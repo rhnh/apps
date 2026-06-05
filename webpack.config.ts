@@ -3,6 +3,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin'
 import * as path from 'path'
 import * as webpack from 'webpack'
 import 'webpack-dev-server'
+
 const config: webpack.Configuration = {
   mode: 'development',
   entry: './src/index.ts',
@@ -36,7 +37,7 @@ const config: webpack.Configuration = {
     port: 9000,
   },
   output: {
-    path: path.resolve(__dirname, 'docs'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
   },
 
