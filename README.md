@@ -5,8 +5,9 @@ Just playing around.
 
 # yarn install
 
-# npm run start
-
-# http://localhost:9000
 
 # npm run build
+
+
+# Install and use live-server to run these.
+
