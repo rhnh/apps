@@ -41,20 +41,20 @@ const config: webpack.Configuration = {
     filename: 'index.js',
   },
 
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './index.html',
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'images',
-          to: 'images',
-        },
-      ],
-    }),
-  ],
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //     filename: 'index.html',
+  //     template: './index.html',
+  //   }),
+  //   new CopyWebpackPlugin({
+  //     patterns: [
+  //       {
+  //         from: 'images',
+  //         to: 'images',
+  //       },
+  //     ],
+  //   }),
+  // ],
 }
 
 export default config
